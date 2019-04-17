@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha ./**/*.spec.js"
   },
+  "bin": {
+    "cloudsploitscan": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cloudsploit/scans.git"
@@ -21,6 +24,9 @@
     "url": "https://github.com/cloudsploit/scans/issues"
   },
   "homepage": "https://cloudsploit.com",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@octokit/rest": "^16.3.2",
     "async": "^2.6.1",

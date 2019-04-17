@@ -1,3 +1,18 @@
 language: node_js
 node_js:
   - "stable"
+before_deploy:
+  # You need to create a variable in your Travis CI settings to provide the
+  # npm package scope. This allows forks to publish under their own name.
+  - sed -i 's/"cloudsploit"/"$NPM_SCOPE\/cloudsploit"/g' package.json
+deploy:
+  provider: npm
+  # You need to create variables in your Travis CI settings to provide the email
+  # address and api key to associate with the published module. This allows
+  # forks to provide their own version of the package without changing this file
+  # The variable names are NPM_EMAIL and NPM_API_KEY.
+  email: $NPM_EMAIL
+  api_key: $NPM_API_KEY
+  on:
+    # Only try to publish when a tag was pushed.
+    tags: true
