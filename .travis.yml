@@ -8,10 +8,9 @@ node_js:
 #
 # 1. Add an environment variable with the name NPM_SCOPE and a value like
 #
-#    @yourname/
+#    @yourname\/
 #
-#  Note the @ symbol and forward slash are both important and shoud not be
-#  changed.
+#  Note the @ symbol and slash are all important and shoud not be changed.
 #
 # 2. Add an environment variable with the name NPM_EMAIL and the email
 #    associated with your NPM account.
@@ -28,7 +27,7 @@ node_js:
 before_deploy:
   # You need to create a variable in your Travis CI settings to provide the
   # npm package scope. This allows forks to publish under their own name.
-  - sed -i 's/"cloudsploit"/"'$NPM_SCOPE'cloudsploit"/g' package.json
+  - sed -i 's#"cloudsploit"#"'$NPM_SCOPE'cloudsploit"#g' package.json
 deploy:
   # We modify package.json to change the package name automatically, so
   # don't to cleanup otherwise that would revert the package name change.
