@@ -1,0 +1,2 @@
+# Exclude all tests when publishing to NPM.
+*.spec.js

@@ -6,6 +6,9 @@ before_deploy:
   # npm package scope. This allows forks to publish under their own name.
   - sed -i 's/"cloudsploit"/"$NPM_SCOPE\/cloudsploit"/g' package.json
 deploy:
+  # We modify package.json to change the package name automatically, so
+  # don't to cleanup otherwise that would revert the package name change.
+  skip_cleanup: true
   provider: npm
   # You need to create variables in your Travis CI settings to provide the email
   # address and api key to associate with the published module. This allows
