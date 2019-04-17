@@ -4,7 +4,7 @@ node_js:
 before_deploy:
   # You need to create a variable in your Travis CI settings to provide the
   # npm package scope. This allows forks to publish under their own name.
-  - sed -i 's/"cloudsploit"/"$NPM_SCOPE\/cloudsploit"/g' package.json
+  - sed -i 's/"cloudsploit"/"'$NPM_SCOPE'\/cloudsploit"/g' package.json
 deploy:
   # We modify package.json to change the package name automatically, so
   # don't to cleanup otherwise that would revert the package name change.
