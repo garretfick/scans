@@ -60,14 +60,17 @@ jobs:
       # 2. Similarly, add an environment variable with your DOCKER_PASSWORD
       #
       # 3. If you want to install a different version of cloudsploit in the container
-      #    (for example because you are building a fork), then set DOCKER_PACKAGENAME
+      #    (for example because you are building a fork), then set DOCKER_NPMPACKAGENAME
       #    to the name of NPM package you want to install, for example @myscope/cloudsploit
+      #
+      # There is probably a strong relationship between NPM_SCOPE and DOCKER_NPMPACKAGENAME
+      # but that's up for you in Travis CI to define.
       if: env(DOCKER_USERNAME) AND env(DOCKER_PASSWORD)
       script:
-      - DOCKER_NPM_PACKAGENAME="${DOCKER_PACKAGENAME:-cloudsploit-scans}"
-      - echo "Publishing from package ${DOCKER_PACKAGENAME}"
+      - DOCKER_BUILD_NPMPACKAGENAME="${DOCKER_NPMPACKAGENAME:-cloudsploit}"
+      - echo "Creating docker image from NPM package ${DOCKER_PACKAGENAME}"
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build --build-arg PACKAGENAME=$DOCKER_NPM_PACKAGENAME -t cloudsploit-scans .
+      - docker build --build-arg PACKAGENAME=$DOCKER_BUILD_NPMPACKAGENAME -t cloudsploit-scan .
       - docker images
-      - docker tag cloudsploit-scans $DOCKER_USERNAME/cloudsploit-scans
-      - docker push $DOCKER_USERNAME/cloudsploit-scans
+      - docker tag cloudsploit-scan $DOCKER_USERNAME/cloudsploit-scan
+      - docker push $DOCKER_USERNAME/cloudsploit-scan
