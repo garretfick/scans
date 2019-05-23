@@ -64,11 +64,10 @@ jobs:
       #    to the name of NPM package you want to install, for example @myscope/cloudsploit
       if: env(DOCKER_USERNAME) AND env(DOCKER_PASSWORD)
       script:
-      - if [[ -n "DOCKER_PACKAGENAME" ]] then
-        DOCKER_PACKAGENAME=cloudsploit 
-        fi
+      - DOCKER_NPM_PACKAGENAME="${DOCKER_PACKAGENAME:-cloudsploit-scans}"
+      - echo "Publishing from package ${DOCKER_PACKAGENAME}"
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build --build-arg PACKAGENAME=$DOCKER_PACKAGENAME -t cloudsploit-scans .
+      - docker build --build-arg PACKAGENAME=$DOCKER_NPM_PACKAGENAME -t cloudsploit-scans .
       - docker images
       - docker tag cloudsploit-scans $DOCKER_USERNAME/cloudsploit-scans
       - docker push $DOCKER_USERNAME/cloudsploit-scans
