@@ -1,8 +1,6 @@
 language: node_js
 node_js:
   - "stable"
-  
-install: npm install
 
 # Define jobs that run after install and running tests. Note that we have to
 # publish the NPM package before building the docker image so that we install
