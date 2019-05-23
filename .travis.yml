@@ -9,7 +9,9 @@ install: npm install
 # the right version from NPM.
 jobs:
   include:
-    - stage: npm release
+    - stage: NPM test
+      script: npm test
+    - stage: NPM release
       # Deployment of cloudsploit is setup to work nicely both for the master repo
       # any forks. That is, a fork can also publish to NPM to a custom scope. To do
       # this, you need to do the following in the Travis CI settings for your account
@@ -18,7 +20,7 @@ jobs:
       #
       #    @yourname\/
       #
-      #  Note the @ symbol and slash are all important and shoud not be changed.
+      #  Note the @ symbol and slash are all important and should not be changed.
       #
       # 2. Add an environment variable with the name NPM_EMAIL and the email
       #    associated with your NPM account.
@@ -32,6 +34,7 @@ jobs:
       #
       # Handling version numbers is ugly now and you'll still have to update
       # package.json. Sorry, but I haven't yet figured out a better way. :(
+      if: tag IS present AND env(NPM_EMAIL) AND ENV(NPM_API_KEY)
       node_js: "stable"
       script: echo "Deploying to npm..."
       before_deploy:
@@ -45,11 +48,8 @@ jobs:
         provider: npm
         email: $NPM_EMAIL
         api_key: $NPM_API_KEY
-        on:
-          # Only try to publish when a tag was pushed.
-          tags: true
 
-    - stage: build docker image
+    - stage: Build docker image
       # Building a docker image is setup to work nicely for both the master and forks.
       # To use this, you need to do the following in the Travis CI settings for your account
       # otherwise this build will skip building the image
@@ -62,10 +62,8 @@ jobs:
       # 3. If you want to install a different version of cloudsploit in the container
       #    (for example because you are building a fork), then set DOCKER_PACKAGENAME
       #    to the name of NPM package you want to install, for example @myscope/cloudsploit
+      if: env(DOCKER_USERNAME) AND env(DOCKER_PASSWORD)
       script:
-      - if [[ -z "DOCKER_USERNAME" ]]; then
-        exit 0;
-        fi
       - if [[ -n "DOCKER_PACKAGENAME" ]] then
         DOCKER_PACKAGENAME=cloudsploit 
         fi
