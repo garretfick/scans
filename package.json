@@ -4,7 +4,9 @@
   "description": "AWS security scanning scripts",
   "main": "index.js",
   "scripts": {
-    "test": "mocha './**/*.spec.js'"
+    "test": "mocha './**/*.spec.js'",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "bin": {
     "cloudsploit-scan": "./index.js"
@@ -49,10 +51,12 @@
     "fast-safe-stringify": "^2.0.6",
     "googleapis": "^40.0.1",
     "jssha": "^2.3.1",
-    "ms-rest-azure": "^2.5.9"
+    "ms-rest-azure": "^2.5.9",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4"
-  }
+  },
+  "snyk": true
 }
