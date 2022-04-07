@@ -31,7 +31,7 @@
     "@octokit/app": "^3.0.0",
     "@octokit/request": "^3.0.3",
     "@octokit/rest": "^16.3.2",
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "aws-sdk": "^2.437.0",
     "azure-arm-cdn": "^4.2.0",
     "azure-arm-compute": "^9.1.0",
