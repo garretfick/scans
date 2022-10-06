@@ -4,7 +4,9 @@
   "description": "AWS security scanning scripts",
   "main": "index.js",
   "scripts": {
-    "test": "mocha './**/*.spec.js'"
+    "test": "mocha './**/*.spec.js'",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "bin": {
     "cloudsploit-scan": "./index.js"
@@ -31,7 +33,7 @@
     "@octokit/app": "^3.0.0",
     "@octokit/request": "^3.0.3",
     "@octokit/rest": "^16.3.2",
-    "async": "^2.6.1",
+    "async": "^2.6.4",
     "aws-sdk": "^2.437.0",
     "azure-arm-cdn": "^4.2.0",
     "azure-arm-compute": "^9.1.0",
@@ -44,15 +46,17 @@
     "azure-arm-storage": "^6.3.0",
     "azure-arm-website": "^5.7.0",
     "azure-keyvault": "^3.0.4",
-    "azure-storage": "^2.10.2",
+    "azure-storage": "^2.10.6",
     "csv-write-stream": "^2.0.0",
     "fast-safe-stringify": "^2.0.6",
     "googleapis": "^40.0.1",
     "jssha": "^2.3.1",
-    "ms-rest-azure": "^2.5.9"
+    "ms-rest-azure": "^2.6.2",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4"
-  }
+  },
+  "snyk": true
 }
