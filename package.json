@@ -28,9 +28,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@octokit/app": "^3.0.0",
-    "@octokit/request": "^3.0.3",
-    "@octokit/rest": "^16.3.2",
+    "@octokit/app": "^10.0.0",
+    "@octokit/request": "^9.2.1",
+    "@octokit/rest": "^17.0.0",
     "async": "^2.6.1",
     "aws-sdk": "^2.437.0",
     "azure-arm-cdn": "^4.2.0",
